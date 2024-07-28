@@ -7,8 +7,8 @@
     <a href='https://tianfan.info' target='_blank'>Tianfan Xue</a>,&emsp;
     <a href='https://github.com/ChrisLiu6' target='_blank'>Dongyang Liu</a>,&emsp;
     <a href='https://github.com/0x3f3f3f3fun' target='_blank'>Xinqi Lin</a>,&emsp;
-    <a href='https://gaopengcuhk.github.io' target='_blank'>Peng Gao</a>,&emsp;
 </div>
+    <a href='https://gaopengcuhk.github.io' target='_blank'>Peng Gao</a>,&emsp;
     <a href='https://scholar.google.com/citations?user=GMzzRRUAAAAJ&hl=en' target='_blank'>Dahua Lin</a>,&emsp;
     <a href='https://scholar.google.com/citations?user=gFtI-8QAAAAJ&hl=en' target='_blank'>Yu Qiao</a>,&emsp;
     <a href='https://wlouyang.github.io' target='_blank'>Wanli Ouyang</a>,&emsp;
@@ -30,7 +30,7 @@
         <a href="https://vchitect.github.io/VEnhancer-project/" target='_blank'>
         <img src="https://img.shields.io/badge/🐳-Project%20Page-blue">
         </a>
-        <a href="" target='_blank'>
+        <a href="https://arxiv.org/abs/2407.07667" target='_blank'>
         <img src="https://img.shields.io/badge/arXiv-2312.06640-b31b1b.svg">
         </a>
         <a href="https://youtu.be/QMR_5weifGg" target='_blank'>
@@ -77,7 +77,8 @@
 
 
 ## 🔥 Update
-- [2024.07] This repo is created.
+- [2024.07.28] Inference code and pretrained video enhancement model are released.
+- [2024.07.10] This repo is created.
 
 ## 🎬 Overview
 The architecture of VEnhancer. It follows ControlNet and copies the architecures and weights of  multi-frame  encoder and middle block of a pretrained video diffusion model to build a trainable condition network. 
@@ -86,18 +87,49 @@ Also, the noise level $\sigma$ regarding noise augmentation and downscaling fact
 ![overall_structure](assets/venhancer_arch.png)
 
 
+## :gear: Installation
+```shell
+# clone this repo
+git clone https://github.com/Vchitect/VEnhancer.git
+cd VEnhancer
+
+# create environment
+conda create -n venhancer python=3.10
+conda activate venhancer
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2
+pip install -r requirements.txt
+```
+Note that ffmpeg command should be enabled. If you have sudo access, then you can install it using the following command:
+```shell
+sudo apt-get update && apt-get install ffmpeg libsm6 libxext6  -y
+```
+
+## :dna: Pretrained Models
+| Model Name | Description | HuggingFace | BaiduNetdisk  |
+| :---------: | :----------: | :----------: | :----------: | 
+| venhancer_paper.pth  | video enhancement model, paper version | [download](https://huggingface.co/jwhejwhe/VEnhancer/resolve/main/venhancer_paper.pt) | [download](https://pan.baidu.com/s/15t20RGvEHqJOMmhA_zRLiA?pwd=cpsd)|
+
+## 💫 Inference 
+1) Download clip model via [open clip](https://huggingface.co/laion/CLIP-ViT-H-14-laion2B-s32B-b79K/resolve/main/open_clip_pytorch_model.bin), Stable Diffusion's VAE via [sd2.1](https://huggingface.co/stabilityai/stable-diffusion-2-1-base/resolve/main/v2-1_512-ema-pruned.ckpt), and VEnhancer model. Then, put these three checkpoints in the `VEnhancer/ckpts` directory.
+2) run the following command.
+```bash
+  bash run_VEnhancer.sh
+```
+
 ## BibTeX
 If you use our work in your research, please cite our publication:
 ```
-@misc{he2024venhancer,
-      title={VEnhancer: Generative Space-Time Enhancement for Video Generation}, 
-      author={Jingwen He and Tianfan Xue and Dongyang Liu and Xinqi Lin and Peng Gao and Dahua Lin and Yu Qiao and Wanli Ouyang and Ziwei Liu},
-      year={2024},
-      eprint={2308.15070},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
+@article{he2024venhancer,
+  title={VEnhancer: Generative Space-Time Enhancement for Video Generation},
+  author={He, Jingwen and Xue, Tianfan and Liu, Dongyang and Lin, Xinqi and Gao, Peng and Lin, Dahua and Qiao, Yu and Ouyang, Wanli and Liu, Ziwei},
+  journal={arXiv preprint arXiv:2407.07667},
+  year={2024}
 }
 ```
+
+## 🤗 Acknowledgements
+Our codebase builds on [modelscope](https://github.com/modelscope/modelscope). 
+Thanks the authors for sharing their awesome codebases! 
 
 ## 📧 Contact
 If you have any questions, please feel free to reach us at `hejingwenhejingwen@outlook.com`.

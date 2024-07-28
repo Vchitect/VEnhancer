@@ -1,0 +1,9 @@
+numpy==1.24
+opencv-python==4.10.0.84
+easydict==1.13
+einops==0.8.0
+open-clip-torch==2.20.0
+xformers==0.0.21
+fairscale==0.4.13
+torchsde==0.2.6
+pytorch-lightning==2.0.1
